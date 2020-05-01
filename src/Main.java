@@ -1,3 +1,5 @@
+import controller.Controller;
+import javafx.animation.AnimationTimer;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,16 +13,24 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        World world = new World(256,256);
-
+        World world = new World(128,128);
         WorldView worldView = new WorldView(world);
         worldView.setPrefSize(600, 600);
-        worldView.draw();
         primaryStage.setTitle("OpenEmpires");
-        primaryStage.setScene(new Scene(worldView));
+        Scene scene = new Scene(worldView);
+        Controller controller = new Controller(scene, world);
+        primaryStage.setScene(scene);
         primaryStage.show();
-    }
 
+        new AnimationTimer(){
+            @Override
+            public void handle(long l) {
+                world.step();
+                controller.step();
+                worldView.draw();
+            }
+        }.start();
+    }
 
     public static void main(String[] args) {
         launch(args);

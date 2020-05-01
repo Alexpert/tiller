@@ -30,13 +30,13 @@ public class WorldBuilder {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (heightMap[x][y] < 0.3) {
-                    tiles[x][y] = new WaterTile();
+                    tiles[x][y] = new WaterTile(x, y);
                 } else if (heightMap[x][y] < 0.5) {
-                    tiles[x][y] = new SandTile();
+                    tiles[x][y] = new SandTile(x, y);
                 } else if (heightMap[x][y] < 0.8) {
-                    tiles[x][y] = new GrassTile();
+                    tiles[x][y] = new GrassTile(x, y);
                 } else {
-                    tiles[x][y] = new RockTile();
+                    tiles[x][y] = new RockTile(x, y);
                 }
             }
         }
@@ -70,13 +70,13 @@ public class WorldBuilder {
     }
 
     private static void generateMiddlePoint(double[][] heightMap, int x1, int y1, int x2, int y2) {
-        double dist = sqrt((x2 - x1)^2 + (y2 - y1)^2);
+        double dist = sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2));
         heightMap[x1 + (x2 - x1) / 2][y1 + (y2 - y1) / 2] = (heightMap[x1][y1] + heightMap[x2][y2]) / 2
                 + (new Random().nextDouble() - 0.5) * min(1, dist / 256);
     }
 
     private static void generateMiddlePoint(double[][] heightMap, int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) {
-        double dist = (sqrt((x3 - x1)^2 + (y3 - y1)^2) + sqrt((x2 - x4)^2 + (y4 - y2)^2)) / 2;
+        double dist = sqrt(pow(x3 - x1, 2) + pow(y3 - y1, 2)) + sqrt(pow(x2 - x4, 2) + pow(y4 - y2, 2)) / 2;
         heightMap[x1 + (x3 - x1) / 2][y1 + (y3 - y1) / 2] =
                 (heightMap[x1][y1] + heightMap[x2][y2] + heightMap[x3][y3] + heightMap[x4][y4]) / 4
                 + (new Random().nextDouble() - 0.5) * min(1, dist / 75);
