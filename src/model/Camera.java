@@ -67,13 +67,13 @@ public class Camera {
     }
 
     public void zoom() {
-        width += 0.3;
-        height += 0.3;
+        width *= 7d/6d;
+        height *= 7d/6d;
     }
 
     public void unzoom() {
-        width -= 0.3;
-        height -= 0.3;
+        width *= 6d/7d;
+        height *= 6d/7d;
     }
 
     public void move(double dx, double dy) {

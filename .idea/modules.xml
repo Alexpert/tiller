@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/openEmpires.iml" filepath="$PROJECT_DIR$/openEmpires.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tiller.iml" filepath="$PROJECT_DIR$/tiller.iml" />
     </modules>
   </component>
 </project>
