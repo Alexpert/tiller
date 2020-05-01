@@ -1,29 +1,30 @@
 package view;
 
-import javafx.scene.Scene;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
 
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
-import model.Tile;
 import model.World;
 
-public class WorldView extends GridPane {
-    private  World world;
+public class WorldView extends Pane {
+    private World world;
+    private int tileWidth = 60;
+    private int tileHeight = 30;
 
     public WorldView(World world) {
         super();
         this.world = world;
+    }
 
+    public void draw() {
         for (int y = 0; y < world.getHeight(); y++) {
             for (int x = 0; x < world.getWidth(); x++) {
 
                 ImageView tile = new ImageView(world.getTile(x, y).getTexture());
-                tile.setFitHeight(5);
-                tile.setFitWidth(5);
-
-                add(tile, x, y, 1, 1);
+                tile.setFitHeight(tileHeight);
+                tile.setFitWidth(tileWidth);
+                tile.relocate((getPrefWidth() / 2) + x * tileWidth / 2 - y * tileWidth / 2,
+                        0 + x * tileHeight / 2 + y * tileHeight / 2);
+                getChildren().add(tile);
             }
         }
     }

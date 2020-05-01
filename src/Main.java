@@ -13,8 +13,8 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         World world = new World(256,256);
 
-        MinimapView worldView = new MinimapView(world);
-        worldView.setPrefSize(200, 200);
+        WorldView worldView = new WorldView(world);
+        worldView.setPrefSize(600, 600);
         worldView.draw();
         primaryStage.setTitle("OpenEmpires");
         primaryStage.setScene(new Scene(worldView));
