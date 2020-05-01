@@ -4,6 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.World;
+import view.MinimapView;
 import view.WorldView;
 
 public class Main extends Application {
@@ -12,7 +13,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         World world = new World(256,256);
 
-        WorldView worldView = new WorldView(world);
+        MinimapView worldView = new MinimapView(world);
+        worldView.setPrefSize(200, 200);
+        worldView.draw();
         primaryStage.setTitle("OpenEmpires");
         primaryStage.setScene(new Scene(worldView));
         primaryStage.show();

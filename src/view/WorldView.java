@@ -21,7 +21,7 @@ public class WorldView extends GridPane {
 
                 ImageView tile = new ImageView(world.getTile(x, y).getTexture());
                 tile.setFitHeight(5);
-                tile.setFitWidth(   5);
+                tile.setFitWidth(5);
 
                 add(tile, x, y, 1, 1);
             }
