@@ -1,7 +1,7 @@
 package utils;
 
 import javafx.scene.paint.Color;
-import model.Tile;
+import model.*;
 
 import java.util.Random;
 
@@ -30,13 +30,13 @@ public class WorldBuilder {
         for (int y = 0; y < height; y++) {
             for (int x = 0; x < width; x++) {
                 if (heightMap[x][y] < 0.3) {
-                    tiles[x][y] = new Tile(Color.BLUE);
+                    tiles[x][y] = new WaterTile();
                 } else if (heightMap[x][y] < 0.5) {
-                    tiles[x][y] = new Tile(Color.YELLOW);
+                    tiles[x][y] = new SandTile();
                 } else if (heightMap[x][y] < 0.8) {
-                    tiles[x][y] = new Tile(Color.GREEN);
+                    tiles[x][y] = new GrassTile();
                 } else {
-                    tiles[x][y] = new Tile(Color.GRAY);
+                    tiles[x][y] = new RockTile();
                 }
             }
         }

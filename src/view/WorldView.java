@@ -1,6 +1,7 @@
 package view;
 
 import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.GridPane;
 
 import javafx.scene.paint.Color;
@@ -17,8 +18,11 @@ public class WorldView extends GridPane {
 
         for (int y = 0; y < world.getHeight(); y++) {
             for (int x = 0; x < world.getWidth(); x++) {
-                Rectangle tile = new Rectangle(5, 5);
-                tile.setFill(world.getTile(x, y) != null ? world.getTile(x, y).getColor() : Color.FUCHSIA);
+
+                ImageView tile = new ImageView(world.getTile(x, y).getTexture());
+                tile.setFitHeight(5);
+                tile.setFitWidth(   5);
+
                 add(tile, x, y, 1, 1);
             }
         }
