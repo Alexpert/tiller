@@ -7,6 +7,8 @@ import javafx.scene.layout.Pane;
 import model.Tile;
 import model.World;
 
+import java.util.ArrayList;
+
 public class WorldView extends Pane {
     private World world;
     private WorldController worldController;
@@ -23,19 +25,30 @@ public class WorldView extends Pane {
         tileWidth = getPrefWidth() / world.getCamera().getWidth();
         tileHeight = getPrefHeight() / world.getCamera().getHeight();
         this.getChildren().removeAll(this.getChildren());
+        ArrayList<Tile> tiles = world.getCamera().getViewedTiles();
 
-        world.getCamera().getViewedTiles().forEach((t) -> drawTile(t, tileWidth, tileHeight));
+        tiles.forEach((t) -> drawTile(t, tileWidth, tileHeight));
+
+        //System.out.println(world.getCamera().getPx() + " " + world.getCamera().getPy());
+        //System.out.println(tiles.get(0) != null ? tiles.get(0).getX() + " " + tiles.get(0).getY() : "null");
     }
 
     private void drawTile(Tile t, double tileWidth, double tileHeight) {
+        if (t == null)
+            return;
         ImageView tile = new ImageView(t.getTexture());
         tile.setFitHeight(tileHeight);
         tile.setFitWidth(tileWidth);
         tile.relocate(
-                (getPrefWidth() / 2) + (t.getX() - world.getCamera().getPx()) * tileWidth / 2 -
+                (t.getX() - world.getCamera().getPx()) * tileWidth / 2 -
                         (t.getY() - world.getCamera().getPy()) * tileWidth / 2,
-                0 + (t.getX() - world.getCamera().getPx()) * tileHeight / 2 +
+                (t.getX() - world.getCamera().getPx()) * tileHeight / 2 +
                         (t.getY() - world.getCamera().getPy()) * tileHeight / 2);
+
+        //tile.relocate(
+        //(int) (tile.getX() - world.getCamera().getPx()) * tileWidth,
+         //       (int) (tile.getY() - world.getCamera().getPy()) * tileHeight);
+
         getChildren().add(tile);
     }
 

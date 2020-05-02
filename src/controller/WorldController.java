@@ -68,7 +68,6 @@ public class WorldController {
     }
 
     private void handleScroll(ScrollEvent s) {
-        System.out.println(s.getDeltaY());
         if (s.getDeltaY() > 0) {
             world.getCamera().zoom();
         } else if (s.getDeltaY() < 0){

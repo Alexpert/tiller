@@ -15,7 +15,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         World world = new World(2048,2048);
         WorldView worldView = new WorldView(world);
-        worldView.setPrefSize(1920, 1080);
+        worldView.setPrefSize(1366, 768);
         primaryStage.setTitle("Tiller");
         Scene scene = new Scene(worldView);
         Controller controller = new Controller(scene, world);
