@@ -1,7 +1,6 @@
 package view;
 
 import controller.WorldController;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 
 import model.Tile;
@@ -36,20 +35,13 @@ public class WorldView extends Pane {
     private void drawTile(Tile t, double tileWidth, double tileHeight) {
         if (t == null)
             return;
-        ImageView tile = new ImageView(t.getTexture());
-        tile.setFitHeight(tileHeight);
-        tile.setFitWidth(tileWidth);
-        tile.relocate(
-                (t.getX() - world.getCamera().getPx()) * tileWidth / 2 -
+        TileView tileView = new TileView(t, tileWidth, tileHeight);
+        tileView.relocate((t.getX() - world.getCamera().getPx()) * tileWidth / 2 -
                         (t.getY() - world.getCamera().getPy()) * tileWidth / 2,
-                (t.getX() - world.getCamera().getPx()) * tileHeight / 2 +
+                    (t.getX() - world.getCamera().getPx()) * tileHeight / 2 +
                         (t.getY() - world.getCamera().getPy()) * tileHeight / 2);
 
-        //tile.relocate(
-        //(int) (tile.getX() - world.getCamera().getPx()) * tileWidth,
-         //       (int) (tile.getY() - world.getCamera().getPy()) * tileHeight);
-
-        getChildren().add(tile);
+        getChildren().add(tileView);
     }
 
     public double getTileHeight() {

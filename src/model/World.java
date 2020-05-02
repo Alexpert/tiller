@@ -13,6 +13,7 @@ public class World {
         this.height = height;
 
         this.tiles = WorldBuilder.generate(width, height);
+        new Entity(this.tiles[0][0]);
         this.camera = new Camera(this);
     }
 

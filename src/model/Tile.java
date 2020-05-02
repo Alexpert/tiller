@@ -1,19 +1,21 @@
 package model;
 
-
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import utils.TextureProvider;
+
+import java.util.ArrayList;
 
 public abstract class Tile {
     protected String textureName;
     protected Color color;
     protected int x, y;
+    protected ArrayList<Entity> entities;
 
     protected Tile(int x, int y) {
         this.x = x;
         this.y = y;
+        entities = new ArrayList<>();
     }
 
     public Color getColor() {
@@ -30,5 +32,13 @@ public abstract class Tile {
 
     public int getY() {
         return y;
+    }
+
+    public ArrayList<Entity> getEntities() {
+        return this.entities;
+    }
+
+    public void addEntity(Entity entity) {
+        this.entities.add(entity);
     }
 }

@@ -13,7 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        World world = new World(2048,2048);
+        World world = new World(512,512);
         WorldView worldView = new WorldView(world);
         worldView.setPrefSize(1366, 768);
         primaryStage.setTitle("Tiller");
